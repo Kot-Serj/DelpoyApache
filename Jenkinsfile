@@ -8,6 +8,7 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('docker-login')
         REPOSITORY ='https://index.docker.io'
+        NAMESPACE= 'nginx'
 
     
     }
@@ -32,5 +33,15 @@ pipeline {
                 sh "docker push 'kotara2905/websaite1:'${commitId}"
             }
         }
+    
+
+
+
+
+    stage ('Deploy to k8s') {
+            steps {
+                sh "kubectl apply -f ./k8s/nginx.yaml"
+}
     }
+
 }
