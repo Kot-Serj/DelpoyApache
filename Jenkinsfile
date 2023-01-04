@@ -20,17 +20,16 @@ pipeline {
                     commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                     echo "${commitId}"
                 }
-            
-
             }
         }
+        
 
-        stage('Build') {
+        stage('Build and push docker image') {
             steps {
                 echo 'Building..'
                 sh "echo ${DOCKER_CREDENTIALS_PSW} |  docker login ${REPOSITORY} -u ${DOCKER_CREDENTIALS_USR} --password-stdin"
-                    sh "docker build -f Dockerfile -t kotara2905/websaite1:'${commitId}' ./"
-                    sh "docker push 'kotara2905/websaite1:'${commitId}"
+                sh "docker build -f Dockerfile -t kotara2905/websaite1:'${commitId}' ./"
+                sh "docker push 'kotara2905/websaite1:'${commitId}"
             }
         }
     }

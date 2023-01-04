@@ -1,11 +1,11 @@
 apiVersion : v1
-kind: Pod
+kind: Deployment
 metadata: 
   name: nginx
 spec: 
   containers: 
     - name : nginx-php
-      image: kotara2905/websaite1:6145f93
+      image: kotara2905/websaite1:${commitId}
       ports:
         - containerPort: 80
         - containerPort: 443
