@@ -1,11 +1,11 @@
 apiVersion : v1
 kind: Pod
 metadata:
-  name: hello
+  name: nginx
 spec:
   containers:
-    - name : container-hello
-      image: kotara2905/websaite1:6ea48e2
+    - name : nginx 
+      image: kotara2905/websaite1:${commitId}
       ports:
         - containerPort: 80
         - containerPort: 443
