@@ -47,8 +47,8 @@ spec:
     resource:
       name: memory
       targetAverageUtilization: 80
-  imagePullSecrets:
-    - name: regcred
+imagePullSecrets:
+  - name: regcred
 
 
 
