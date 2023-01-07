@@ -8,6 +8,7 @@ metadata:
     env  : prod
     owner: kot
 spec:
+replicas: 2
 selector:
   matchLabels:
     project: nginx
