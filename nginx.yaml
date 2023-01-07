@@ -1,17 +1,54 @@
-apiVersion : v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deploy
 metadata:
   name: nginx
+  namespace: {{namespace}}
+  labels:
+    app  : nginx
+    env  : prod
+    owner: kot
 spec:
-  containers:
-    - name : nginx 
-      image: "kotara2905/websaite1:{{image_tag}}"
-      ports:
-        - containerPort: 80
-        - containerPort: 443
-  imagePullSecrets:
-    - name: regcred
+selector:
+  matchLabels:
+    project: nginx
+template:
+  metadata:
+      labels:
+        project: nginx
+  spec:
+    containers:
+      - name : nginx={{image_tag}}
+        image: "kotara2905/websaite1:{{image_tag}}"
+        ports:
+          - containerPort: 80
+          - containerPort: 443
 
 
-    
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-autoscaling
+  namespace: {{namespace}}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v2beta1v1
+    kind: Deployment
+    name: nginx
+  minReplicas: 2
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 80
+imagePullSecrets:
+  - name: regcred
+
+
+
   
