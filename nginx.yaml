@@ -1,7 +1,7 @@
 apiVersion : v1
 kind: Deployment
 metadata: 
-  name: ${namespace}-prod
+  name: ${namespace}
   containers: 
     - name : {{namespace}}
       image: kotara2905/websaite1:${commitId}
