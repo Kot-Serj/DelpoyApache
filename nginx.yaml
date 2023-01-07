@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name : container-hello
-      image: kotara2905/websaite1:${commitId}
+      image: kotara2905/websaite1:6ea48e2
       ports:
         - containerPort: 80
         - containerPort: 443
