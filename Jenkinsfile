@@ -8,7 +8,7 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('docker-login')
         REPOSITORY ='https://index.docker.io'
-        NAMESPACE= 'nginx-prod'
+        NAMESPACE= 'nginx'
 
     
     }
