@@ -40,16 +40,7 @@ spec:
     name: nginx
   minReplicas: 2
   maxReplicas: 3
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      targetAverageUtilization: 80
-
+  
 
 
 
