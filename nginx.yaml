@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name : nginx 
-      image: kotara2905/websaite1:${commitId}
+      image: "kotara2905/websaite1:{{image_tag}}"
       ports:
         - containerPort: 80
         - containerPort: 443
