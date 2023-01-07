@@ -25,7 +25,7 @@ template:
 
 
 ---
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: nginx-autoscaling
@@ -46,8 +46,8 @@ spec:
     resource:
       name: memory
       targetAverageUtilization: 80
-imagePullSecrets:
-  - name: regcred
+  imagePullSecrets:
+    - name: regcred
 
 
 
