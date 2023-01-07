@@ -18,11 +18,13 @@ spec:
         project: nginx
     spec:
       containers:
-        - name : nginx={{image_tag}}
+        - name : nginx
           image: "kotara2905/websaite1:{{image_tag}}"
           ports:
           - containerPort: 80
           - containerPort: 443
+  imagePullSecrets:
+  - name: regcred
 
 
 ---
@@ -47,8 +49,7 @@ spec:
     resource:
       name: memory
       targetAverageUtilization: 80
-imagePullSecrets:
-  - name: regcred
+
 
 
 
