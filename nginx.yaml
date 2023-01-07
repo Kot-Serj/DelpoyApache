@@ -8,7 +8,7 @@ spec:
       image: kotara2905/websaite1:${commitId}
       ports:
         - containerPort: 80
-      - containerPort: 443
+        - containerPort: 443
 imagePullSecrets:
   - name: regcred
   
