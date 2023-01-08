@@ -37,7 +37,7 @@ spec:
   maxReplicas: 4
   minReplicas: 2
   scaleTargetRef:
-    apiVersion: apps/v2beta1v1
+    apiVersion: apps/v1
     kind: Deployment
     name: nginx
   metrics:
