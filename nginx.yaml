@@ -40,7 +40,10 @@ spec:
     apiVersion: apps/v2beta1v1
     kind: Deployment
     name: nginx
-  targetmemoryUtilizationPercentage: 89
-
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70
 
   
