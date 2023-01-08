@@ -43,10 +43,10 @@ spec:
   metrics:
   - type: Resource
     resource:
-      name: memory
-      targetAverageUtilization: 80
-
-
+    name: memory
+    target:
+      type: Utilization
+      averageUtilization: 80
   
 
 
