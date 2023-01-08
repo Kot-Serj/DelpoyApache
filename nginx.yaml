@@ -34,26 +34,13 @@ metadata:
   name: nginx-autoscaling
   namespace: {{namespace}}
 spec:
+  maxReplicas: 4
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v2beta1v1
     kind: Deployment
     name: nginx
-  minReplicas: 2
-  maxReplicas: 4
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 75
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 85
-
+  targetMemoryUtilizationPercentage: 89
 
 
   
