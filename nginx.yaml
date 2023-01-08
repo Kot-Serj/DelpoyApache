@@ -40,7 +40,7 @@ spec:
     apiVersion: apps/v2beta1v1
     kind: Deployment
     name: nginx
-  targetMemoryUtilizationPercentage: 89
+  targetmemoryUtilizationPercentage: 89
 
 
   
