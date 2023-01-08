@@ -39,7 +39,16 @@ spec:
     kind: Deployment
     name: nginx
   minReplicas: 2
-  maxReplicas: 3
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 90
+
+
   
 
 
