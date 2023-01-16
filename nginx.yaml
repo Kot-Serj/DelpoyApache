@@ -2,7 +2,6 @@ apiVersion : apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: {{namespace}}
   labels:
     app  : nginx
     env  : prod
@@ -32,7 +31,6 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: nginx-autoscaling
-  namespace: {{namespace}}
 spec:
   maxReplicas: 4
   minReplicas: 2
