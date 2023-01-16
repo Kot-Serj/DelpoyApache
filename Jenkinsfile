@@ -41,11 +41,13 @@ pipeline {
     stage ('Deploy to k8s') {
             steps {
                 sh "sed -i 's/{{image_tag}}/${commitId}/g' ~/workspace/wordpress/nginx.yaml"
-                //sh "sed -i 's/{{namespace}}/${NAMESPACE}/g' ~/workspace/wordpress/nginx.yaml"
+                sh "sed -i 's/{{namespace}}/${NAMESPACE}/g' ~/workspace/wordpress/nginx.yaml"
                 
 
-
+                sh "kubectl apply -f ~/workspace/wordpress/namespace.yaml"
+                sh "kubectl apply -f ~/workspace/wordpress/serv.yaml"
                 sh "kubectl apply -f ~/workspace/wordpress/nginx.yaml"
+
 }
     }
 

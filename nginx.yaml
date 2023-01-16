@@ -2,6 +2,7 @@ apiVersion : apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  namespace: {{namespace}}
   labels:
     app  : nginx
     env  : prod
@@ -23,7 +24,7 @@ spec:
           - containerPort: 80
           - containerPort: 443
       imagePullSecrets:
-      - name: regcred
+      - name: regcred1
 
 
 ---
@@ -31,6 +32,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: nginx-autoscaling
+  namespace: {{namespace}}
 spec:
   maxReplicas: 4
   minReplicas: 2
@@ -51,4 +53,6 @@ spec:
       target:
         type: Utilization
         averageUtilization: 80
+
+        
   
