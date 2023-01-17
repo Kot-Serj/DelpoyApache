@@ -8,7 +8,6 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('docker-login')
         REPOSITORY ='https://index.docker.io'
-        NAMESPACE= 'nginx'
 
     
     }
@@ -41,7 +40,6 @@ pipeline {
     stage ('Deploy to k8s') {
             steps {
                 sh "sed -i 's/{{image_tag}}/${commitId}/g' ~/workspace/k8s/wordpress/nginx.yaml"
-                sh "sed -i 's/{{namespace}}/${NAMESPACE}/g' ~/workspace/k8s/wordpress/nginx.yaml"
                 
 
                 sh "kubectl apply -f ~/workspace/k8s/wordpress/serv.yaml"
