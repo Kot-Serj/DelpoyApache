@@ -42,7 +42,7 @@ pipeline {
                 sh "sed -i 's/{{image_tag}}/${commitId}/g' ~/workspace/k8s/wordpress/nginx.yaml"
                 
 
-                sh "kubectl apply -f ~/workspace/k8s/wordpress/serv.yaml"
+                sh "kubectl apply -f ~/workspace/k8s/wordpress/service.yaml"
                 sh "kubectl apply -f ~/workspace/k8s/wordpress/nginx.yaml"
 
 }
