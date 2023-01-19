@@ -43,6 +43,7 @@ pipeline {
                 
 
                 sh "kubectl apply -f ~/workspace/k8s/wordpress/service.yaml"
+                
                 sh "kubectl apply -f ~/workspace/k8s/wordpress/nginx.yaml"
 
 }
