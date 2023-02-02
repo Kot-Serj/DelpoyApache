@@ -18,13 +18,13 @@ spec:
         name: nginx
         app: nginx
     spec:
-    containers:
-      - name: nginx
-        image: "kotara2905/websaite1:{{image_tag}}"
-        ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
+      containers:
+        - name: nginx
+          image: "kotara2905/websaite1:{{image_tag}}"
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
     # imagePullSecrets:
     # - name: regcred
 
