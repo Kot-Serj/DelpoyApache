@@ -3,25 +3,28 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    app  : nginx
-    env  : prod
+    name: nginx
+    app: nginx
+    env: prod
     owner: kot
 spec:
   replicas: 2
   selector:
     matchLabels:
-      project: nginx
+      name: nginx
   template:
     metadata:
       labels:
-        project: nginx
+        name: nginx
+        app: nginx
     spec:
       containers:
         - name : nginx
           image: "kotara2905/websaite1:{{image_tag}}"
           ports:
           - containerPort: 80
-          - containerPort: 443
+            name: http
+            protocol: TCP
       imagePullSecrets:
       - name: regcred
 
