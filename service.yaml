@@ -2,17 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  # namespace: {{namespace}}
   labels:
     app: nginx
-    env  : prod
-    owner: kot
+    # branch: {{prefix}}
 spec:
   selector:
     app: nginx
   ports:
     - name: nginx
-      protocol  : TCP
-      port      : 80  # Port on Load Balancer
+      protocol: TCP
+      port: 80
 
 ---
 
@@ -20,25 +20,26 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx
+  # namespace: {{namespace}}
   labels:
     app: nginx
+    # branch: {{prefix}}
   annotations:
     kubernetes.io/tls-acme: "false"
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "ingress-nginx"
     nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
     nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
-  # ingressClassName: nginx
   rules:
-  - host: k8s.dcserver.ru
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+    - host: "k8s.dcserver.ru"
+      http:
+        paths:
+          - backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
 

@@ -1,59 +1,122 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  # namespace: {{namespace}}
   labels:
-    name: nginx
     app: nginx
-    env: prod
-    owner: kot
+    name: prod
+    # branch: {{prefix}}
 spec:
   replicas: 2
+  progressDeadlineSeconds: 1200
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       name: nginx
   template:
     metadata:
       labels:
-        name: nginx
         app: nginx
+        name: nginx
+        # branch: {{prefix}}
+        team: kot
+        log: json
+      # annotations:
+        # prometheus.io/scrape: "{{prometheus_enabled}}"
+        # prometheus.io/path: "/metrics"
+        # prometheus.io/port: "9145"
     spec:
+      restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - "nginx"
+                topologyKey: kubernetes.io/hostname
+      
       containers:
         - name: nginx
           image: "kotara2905/websaite1:{{image_tag}}"
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /nginx-health
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /nginx-health
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 1
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 20"]
           ports:
             - containerPort: 80
               name: http
               protocol: TCP
-    # imagePullSecrets:
-    # - name: regcred
-
-
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: nginx-autoscaling
-spec:
-  maxReplicas: 4
-  minReplicas: 2
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: nginx
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+            limits:
+              memory: 150Mi
+              cpu: 800m
+          # volumeMounts:
+          #   - name: efs-storage
+          #     mountPath: /mnt/efs
+          #   - name: nginx-host
+          #     mountPath: /etc/nginx/sites-enabled/ppc-world.conf
+          #     subPath: ppc-world.conf
+          #   - name: shared-files
+          #     mountPath: /var/www/ppc-world/public_html/public
 
         
-  
+      # tolerations:
+      #   - effect: NoSchedule
+      #     key: "{{tolerations_key}}"
+      #     operator: Equal
+      #     value: "1"
+      # nodeSelector:
+      #   {{tolerations_key}}: "1"
+
+
+
+
+# ---
+
+# apiVersion: autoscaling/v1
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: {{prefix}}-ppc-world
+#   namespace: {{namespace}}
+#   labels:
+#     app: {{prefix}}-ppc-world
+#     name: {{prefix}}-ppc-world
+#     branch: {{prefix}}
+# spec:
+#   maxReplicas: 10
+#   minReplicas: {{count_replicas}}
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: {{prefix}}-ppc-world
+#   targetCPUUtilizationPercentage: 80
