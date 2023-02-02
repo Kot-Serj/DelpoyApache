@@ -5,7 +5,7 @@ metadata:
   # namespace: {{namespace}}
   labels:
     app: nginx
-    name: prod
+    name: nginx
     # branch: {{prefix}}
 spec:
   replicas: 2
