@@ -45,26 +45,26 @@ spec:
         - name: nginx
           image: "kotara2905/websaite1:{{image_tag}}"
           imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /nginx-health
-              port: 80
-              scheme: HTTP
-            initialDelaySeconds: 10
-            periodSeconds: 15
-            successThreshold: 1
-            timeoutSeconds: 5
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /nginx-health
-              port: 80
-              scheme: HTTP
-            initialDelaySeconds: 5
-            periodSeconds: 15
-            successThreshold: 1
-            timeoutSeconds: 1
+          # livenessProbe:
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: /nginx-health
+          #     port: 80
+          #     scheme: HTTP
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 15
+          #   successThreshold: 1
+          #   timeoutSeconds: 5
+          # readinessProbe:
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: /nginx-health
+          #     port: 80
+          #     scheme: HTTP
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 15
+          #   successThreshold: 1
+          #   timeoutSeconds: 1
           lifecycle:
             preStop:
               exec:
