@@ -13,7 +13,7 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      name: nginx
+      name: "nginx"
   template:
     metadata:
       labels:
