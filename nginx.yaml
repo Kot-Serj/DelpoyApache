@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: apache
   # namespace: {{namespace}}
   labels:
-    app: nginx
-    name: nginx
+    app: apache
+    name: apache
     # branch: {{prefix}}
 spec:
   replicas: 2
@@ -13,12 +13,12 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      name: "nginx"
+      name: "apache"
   template:
     metadata:
       labels:
-        app: nginx
-        name: nginx
+        app: apache
+        name: apache
         # branch: {{prefix}}
         team: kot
         log: json
@@ -38,11 +38,11 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - "nginx"
+                        - "apache"
                 topologyKey: kubernetes.io/hostname
       
       containers:
-        - name: nginx
+        - name: apache
           image: "kotara2905/websaite1:{{image_tag}}"
           imagePullPolicy: Always
           # livenessProbe:
