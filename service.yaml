@@ -27,7 +27,7 @@ metadata:
     # branch: {{prefix}}
   annotations:
     kubernetes.io/tls-acme: "false"
-    kubernetes.io/ingress.class: "apache"
+    kubernetes.io/ingress.class: "ingress-nginx"
     nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
     nginx.ingress.kubernetes.io/proxy-body-size: "40M"
