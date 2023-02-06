@@ -26,13 +26,9 @@ metadata:
     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
   rules:
-    - host: "k8s.dcserver.ru"
+    - host: cat.adv-it.net
       http:
-        paths:
-          - backend:
-              service:
-                name: tomcat 
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
+      paths:
+        - backend:
+           serviceName: tomcat
+           servicePort: 8080
