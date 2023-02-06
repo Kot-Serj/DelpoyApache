@@ -30,5 +30,5 @@ spec:
       http:
         paths:
           - backend:
-            serviceName: tomcat
-            servicePort: 8080
+             serviceName: tomcat
+             servicePort: 8080
