@@ -24,6 +24,7 @@ metadata:
     nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
     nginx.ingress.kubernetes.io/proxy-body-size: "40M"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: k8s.dcserver.ru
