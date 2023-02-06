@@ -3,8 +3,8 @@ kind: Service
 metadata:
   name: tomcat 
 spec:
-  # selector:
-  #     app.kubernetes.io/name: tomcat
+  selector:
+      app.kubernetes.io/name: tomcat
   ports:
     - protocol: TCP
       port: 80
@@ -20,10 +20,12 @@ metadata:
   labels:
     app: tomcat
     # branch: {{prefix}}
-  # annotations:
-  #   nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  #   nginx.ingress.kubernetes.io/use-regex: "true"
-  #   nginx.ingress.kubernetes.io/rewrite-target: /$2
+  annotations:
+    kubernetes.io/tls-acme: "false"
+    kubernetes.io/ingress.class: "tomcat"
+    nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
+    nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
   ingressClassName: nginx
   rules:
@@ -40,31 +42,3 @@ spec:
 
 
 
-# kubernetes.io/tls-acme: "false"
-    # kubernetes.io/ingress.class: "tomcat"
-    # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
-    # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
-    # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
-
----
-
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
-metadata:
-  name: tomcat # by convention, use the name of the Service
-                     # as a prefix for the name of the EndpointSlice
-  labels:
-    # You should set the "kubernetes.io/service-name" label.
-    # Set its value to match the name of the Service
-    kubernetes.io/service-name: tomcat
-addressType: IPv4
-ports:
-  - name: '' # empty because port 9376 is not assigned as a well-known
-             # port (by IANA)
-    appProtocol: http
-    protocol: TCP
-    port: 9376
-endpoints:
-  - addresses:
-      - "10.4.5.6" # the IP addresses in this list can appear in any order
-      - "10.1.2.3"
