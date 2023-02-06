@@ -1,4 +1,4 @@
-FROM apache
+FROM tomcat
 
 ENV TZ=Europe/Minsk
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
