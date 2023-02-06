@@ -44,8 +44,8 @@ pipeline {
                 // sh "sed -i 's/{{namespace}}/${NAMESPACE}/g' ~/workspace/k8s/wordpress/nginx.yaml"
                 
 
-                sh "kubectl apply -f ~/workspace/k8s/wordpress/serv.yaml"
-                sh "kubectl apply -f ~/workspace/k8s/wordpress/tomcat.yaml"
+                sh "kubectl apply -f ~/workspace/k8s/Apache/serv.yaml"
+                sh "kubectl apply -f ~/workspace/k8s/Apache/tomcat.yaml"
 
 }
     }
