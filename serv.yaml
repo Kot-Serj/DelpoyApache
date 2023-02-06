@@ -28,7 +28,7 @@ spec:
   rules:
     - host: "k8s.dcserver.ru"
       http:
-      paths:
-        - backend:
-           serviceName: tomcat
-           servicePort: 8080
+        paths:
+          - backend:
+            serviceName: tomcat
+            servicePort: 8080
