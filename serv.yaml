@@ -18,7 +18,7 @@ metadata:
   labels:
     app: tomcat 
     # branch: {{prefix}}
-  annotations:
+  # annotations:
     # kubernetes.io/tls-acme: "false"
     # kubernetes.io/ingress.class: "ingress-nginx"
     # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
@@ -26,7 +26,7 @@ metadata:
     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
   rules:
-    - host: cat.adv-it.net
+    - host: "k8s.dcserver.ru"
       http:
       paths:
         - backend:
