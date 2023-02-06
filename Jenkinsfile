@@ -40,7 +40,7 @@ pipeline {
 
     stage ('Deploy to k8s') {
             steps {
-                sh "sed -i 's/{{image_tag}}/${commitId}/g' ~/workspace/k8s/wordpress/nginx.yaml"
+                sh "sed -i 's/{{image_tag}}/${commitId}/g' ~/workspace/k8s/Apache/tomcat.yaml"
                 // sh "sed -i 's/{{namespace}}/${NAMESPACE}/g' ~/workspace/k8s/wordpress/nginx.yaml"
                 
 
