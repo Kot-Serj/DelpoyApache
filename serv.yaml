@@ -13,12 +13,26 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-hosts
+  name: tomcat
+  # namespace: {{namespace}}
+  labels:
+    app: tomcat
+    # branch: {{prefix}}
+  annotations:
+    kubernetes.io/tls-acme: "false"
+    kubernetes.io/ingress.class: "apache"
+    nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
+    nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
   rules:
-  - host: k8s.dcserver.ru
-    http:
-      paths:
-        - backend:
-           serviceName: tomcat
-           servicePort: 80
+    - host: k8s.dcserver.ru
+      http:
+        paths:
+          - backend:
+              service:
+                name: tomcat
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
