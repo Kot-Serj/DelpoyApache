@@ -6,7 +6,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 12815
 
 ---
 
@@ -32,7 +32,7 @@ spec:
               service:
                 name: tomcat
                 port:
-                  number: 80
+                  number: 8080
             path: /
             pathType: Prefix
 
