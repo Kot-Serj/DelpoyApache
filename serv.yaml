@@ -32,7 +32,7 @@ spec:
               service:
                 name: tomcat
                 port:
-                  number: 80
+                  number: 12815
             path: /
             pathType: Prefix
 
