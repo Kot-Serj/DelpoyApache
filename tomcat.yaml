@@ -1,0 +1,56 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: tomcat
+  labels:
+    app  : tomcat
+    env  : prod
+    owner: kot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: tomcat
+  template:
+    metadata:
+      labels:
+        project: tomcat
+    spec:
+      containers:
+        - name : tomcat 
+          image: tomcat:9.0.71-jre8-temurin-focal
+          ports:
+          - containerPort: 80
+          - containerPort: 443
+      imagePullSecrets:
+      - name: regcred
+
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: tomcat-autoscaling
+spec:
+  maxReplicas: 4
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: tomcat
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+        
+  
