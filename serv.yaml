@@ -16,50 +16,29 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tomcat
-    # namespace: default
+  # namespace: {{namespace}}
+  labels:
+    app: tomcat
+    # branch: {{prefix}}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "false"
+    # kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
+    nginx.ingress.kubernetes.io/proxy-body-size: "40M"
 spec:
- rules:
-  - host: k8s.dcserver.ru
-    http:
-      paths:
-          - path: /
-            pathType: Prefix
-            backend:
+  ingressClassName: ingress-nginx
+  rules:
+    - host: k8s.dcserver.ru
+      http:
+        paths:
+          - backend:
               service:
                 name: tomcat
                 port:
-                  number: 80
-
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: tomcat
-#   # namespace: {{namespace}}
-#   labels:
-#     app: tomcat
-#     # branch: {{prefix}}
-#   annotations:
-#     kubernetes.io/tls-acme: "false"
-#     # kubernetes.io/ingress.class: "nginx"
-#     nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
-#     nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
-#     nginx.ingress.kubernetes.io/proxy-body-size: "40M"
-# spec:
-#   ingressClassName: ingress-nginx
-#   rules:
-#     - host: k8s.dcserver.ru
-#       http:
-#         paths:
-#           - backend:
-#               service:
-#                 name: tomcat
-#                 port:
-#                   number: 12815
-#             path: /
-#             pathType: Prefix
+                  number: 12815
+            path: /
+            pathType: Prefix
 
 
 
