@@ -26,14 +26,14 @@ metadata:
     # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
     # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
-    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/rewrite-target:
 spec:
   ingressClassName: nginx
   rules:
   - host: k8s.dcserver.ru
     http:
       paths:
-      - path: /
+      - path: /test
         pathType: Prefix
         backend:
           service:
