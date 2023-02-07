@@ -3,8 +3,8 @@ kind: Service
 metadata:
   name: tomcat 
 spec:
-  selector:
-      app.kubernetes.io/name: tomcat
+  # selector:
+  #     app.kubernetes.io/name: tomcat
   ports:
     - protocol: TCP
       port: 80
@@ -28,18 +28,19 @@ metadata:
     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
     ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: ingress-nginx
+  ingressClassName: nginx
   rules:
-    - host: k8s.dcserver.ru
-      http:
-        paths:
-          - backend:
-              service:
-                name: tomcat
-                port:
-                  number: 12815
-            path: /
-            pathType: Prefix
+  - host: k8s.dcserver.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tomcat
+            port:
+              number: 12815
+            
 
 
 
