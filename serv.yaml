@@ -11,6 +11,8 @@ spec:
       targetPort: 12815
   selector:
     app: tomcat
+  externalIPs:
+    - 10.69.1.120
 
 ---
 
