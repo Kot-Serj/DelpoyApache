@@ -11,7 +11,7 @@ spec:
       targetPort: 12815
   selector:
     app: tomcat
-    
+
 ---
 
 apiVersion: networking.k8s.io/v1
@@ -28,7 +28,7 @@ metadata:
     # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
     # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
-    # ingress.kubernetes.io/rewrite-target:
+    ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
