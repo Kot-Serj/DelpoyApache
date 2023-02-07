@@ -59,7 +59,7 @@ subsets:
   - addresses:
         - ip: 10.59.205.180
     ports:
-      - port: 12815
+      - port: 80
         name: tomcat
             
 
