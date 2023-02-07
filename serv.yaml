@@ -23,7 +23,9 @@ metadata:
   name: tomcat
   # namespace: {{namespace}}
   labels:
-    app: tomcat
+    app  : tomcat
+    env  : prod
+    owner: kot
     # branch: {{prefix}}
   annotations:
     kubernetes.io/tls-acme: "false"
