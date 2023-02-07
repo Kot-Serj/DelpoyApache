@@ -4,9 +4,9 @@ metadata:
   name: tomcat 
 spec:
   selector:
-      app.kubernetes.io/name: tomcat
-      app: tomcat
-      project: tomcat
+    app  : tomcat
+    env  : prod
+    owner: kot
   ports:
     - protocol: TCP
       port: 12815
