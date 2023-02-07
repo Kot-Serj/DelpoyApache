@@ -48,6 +48,19 @@ spec:
             name: tomcat
             port:
               number: 12815
+
+---
+
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: tomcat
+subsets: 
+  - addresses:
+        - ip: 10.59.205.180
+    ports:
+      - port: 12815
+        name: tomcat
             
 
 
