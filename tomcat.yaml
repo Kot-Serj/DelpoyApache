@@ -30,7 +30,7 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: tomcat-autoscaling
+  name: tomcat
 spec:
   maxReplicas: 4
   minReplicas: 2
