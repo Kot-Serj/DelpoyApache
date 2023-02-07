@@ -3,14 +3,15 @@ kind: Service
 metadata:
   name: tomcat 
 spec:
-  # selector:
-  #     app.kubernetes.io/name: tomcat
+  selector:
+      app.kubernetes.io/name: tomcat
+      app: tomcat
+      project: tomcat
   ports:
     - protocol: TCP
       port: 12815
       targetPort: 12815
-  selector:
-    app: tomcat
+    
   # externalIPs:
   #   - 10.69.1.120
 
