@@ -7,7 +7,7 @@ spec:
   #     app.kubernetes.io/name: tomcat
   ports:
     - protocol: TCP
-      port: 80
+      port: 12815
       targetPort: 12815
   selector:
     app: tomcat
