@@ -31,8 +31,6 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
     # ingress.kubernetes.io/frontend-ip: xx.xxx.xxx.xx
 spec:
-  selector:
-    project  : tomcat
   ingressClassName: nginx
   rules:
   - host: k8s.dcserver.ru
