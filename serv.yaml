@@ -23,13 +23,12 @@ metadata:
     owner: kot
     # branch: {{prefix}}
   annotations:
-    # kubernetes.io/tls-acme: "false"
+    kubernetes.io/tls-acme: "false"
     # # kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
-    # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
-    # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
+    nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
+    nginx.ingress.kubernetes.io/proxy-body-size: "40M"
     ingress.kubernetes.io/rewrite-target: /
-    # ingress.kubernetes.io/frontend-ip: xx.xxx.xxx.xx
 spec:
   ingressClassName: nginx
   rules:
@@ -44,24 +43,4 @@ spec:
             port:
               number: 12815
 
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: minimal-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  # ingressClassName: nginx-example
-  rules:
-  - http:
-      paths:
-      - path: /testpath
-        pathType: Prefix
-        backend:
-          service:
-            name: tomcart
-            port:
-              number: 80
 
