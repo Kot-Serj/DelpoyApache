@@ -21,7 +21,6 @@ spec:
           image: kotara2905/websaite1:{{image_tag}}
           ports:
           - containerPort: 12815
-          # - containerPort: 443
       imagePullSecrets:
       - name: regcred
 

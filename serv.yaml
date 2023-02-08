@@ -11,9 +11,6 @@ spec:
     - protocol: TCP
       port: 12815
       targetPort: 12815
-    
-  # externalIPs:
-  #   - 10.69.1.120
 
 ---
 
@@ -51,16 +48,16 @@ spec:
 
 ---
 
-kind: Endpoints
-apiVersion: v1
-metadata:
-  name: tomcat
-subsets: 
-  - addresses:
-        - ip: 10.59.205.180
-    ports:
-      - port: 80
-        name: tomcat
+# kind: Endpoints
+# apiVersion: v1
+# metadata:
+#   name: tomcat
+# subsets: 
+#   - addresses:
+#         - ip: 10.59.205.180
+#     ports:
+#       - port: 80
+#         name: tomcat
             
 
 
