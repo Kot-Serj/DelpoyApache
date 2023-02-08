@@ -14,37 +14,37 @@
 
 # ---
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: tomcat
-  # namespace: {{namespace}}
-  labels:
-    app  : tomcat
-    env  : prod
-    owner: kot
-    # branch: {{prefix}}
-  # annotations:
-    # kubernetes.io/tls-acme: "false"
-    # # kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
-    # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
-    # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
-    # ingress.kubernetes.io/rewrite-target: /
-    # ingress.kubernetes.io/frontend-ip: xx.xxx.xxx.xx
-spec:
-  # ingressClassName: nginx
-  rules:
-  - host: k8s.dcserver.ru
-    http:
-      paths:
-      - path: /test
-        pathType: Prefix
-        backend:
-          service:
-            name: tomcat
-            port:
-              number: 12815
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: tomcat
+#   # namespace: {{namespace}}
+#   labels:
+#     app  : tomcat
+#     env  : prod
+#     owner: kot
+#     # branch: {{prefix}}
+#   # annotations:
+#     # kubernetes.io/tls-acme: "false"
+#     # # kubernetes.io/ingress.class: "nginx"
+#     # nginx.ingress.kubernetes.io/server-alias: "k8s.dcserver.ru"
+#     # nginx.ingress.kubernetes.io/client-body-buffer-size: "40M"
+#     # nginx.ingress.kubernetes.io/proxy-body-size: "40M"
+#     # ingress.kubernetes.io/rewrite-target: /
+#     # ingress.kubernetes.io/frontend-ip: xx.xxx.xxx.xx
+# spec:
+#   # ingressClassName: nginx
+#   rules:
+#   - host: k8s.dcserver.ru
+#     http:
+#       paths:
+#       - path: /test
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: tomcat
+#             port:
+#               number: 12815
 
 ---
 
@@ -60,5 +60,16 @@ spec:
 #         name: tomcat
             
 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hosts
 
+spec:
+  - host: k8s.dcserver.ru
+    http:
+      paths:
+        - backend:
+           serviceName: tomcat
+           servicePort: 8080
 
