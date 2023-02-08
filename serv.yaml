@@ -1,18 +1,18 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: tomcat 
-spec:
-  selector:
-    app  : tomcat
-    env  : prod
-    owner: kot
-  ports:
-    - protocol: TCP
-      port: 12815
-      targetPort: 12815
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: tomcat 
+# spec:
+#   selector:
+#     app  : tomcat
+#     env  : prod
+#     owner: kot
+#   ports:
+#     - protocol: TCP
+#       port: 12815
+#       targetPort: 12815
 
----
+# ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
