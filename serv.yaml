@@ -5,8 +5,6 @@ metadata:
 spec:
   selector:
     project  : tomcat
-    env  : prod
-    owner: kot
   ports:
     - protocol: TCP
       port: 12815
