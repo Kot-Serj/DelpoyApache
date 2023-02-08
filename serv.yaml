@@ -7,7 +7,7 @@ spec:
     project  : tomcat
   ports:
     - protocol: TCP
-      port: 12815
+      port: 80
       targetPort: 12815
 
 ---
@@ -41,6 +41,6 @@ spec:
           service:
             name: tomcat
             port:
-              number: 12815
+              number: 80
 
 
