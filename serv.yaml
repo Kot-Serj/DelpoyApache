@@ -29,7 +29,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "40M"
     ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: ingress-nginx
   rules:
   - host: k8s.dcserver.ru
     http:
